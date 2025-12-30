@@ -131,3 +131,16 @@ body.dark-mode #themeToggle {
   background: #333;
   color: #fff;
 }
+#countdown {
+    text-align: center;
+    margin: 30px 0;
+}
+#timer {
+    font-size:1.5em;
+    color: #00509e;
+    font-weight:bold;
+}
+body.dark-mode #timer {
+    color:#66ccff;
+}
+
