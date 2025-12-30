@@ -21,7 +21,44 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-}); 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registrationForm");
+  const message = document.getElementById("message");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const event = document.getElementById("event").value;
+
+      try {
+        const response = await fetch("/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email, event })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          message.style.color = "green";
+          message.textContent = result.message;
+          form.reset();
+        } else {
+          message.style.color = "red";
+          message.textContent = result.message;
+        }
+      } catch (error) {
+        message.style.color = "red";
+        message.textContent = "Server error!";
+      }
+    });
+  }
+}); }); 
 
 const themeToggle = document.getElementById("themeToggle");
 
