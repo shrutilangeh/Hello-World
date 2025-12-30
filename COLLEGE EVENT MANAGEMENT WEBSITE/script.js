@@ -44,3 +44,27 @@ if (themeToggle) {
     }
   });
 }
+
+const timerElement = document.getElementById("timer");
+const eventDate = new Date("November 20, 2025 10:00:00").getTime();
+
+if (timerElement) {
+  const countdown = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance < 0) {
+      clearInterval(countdown);
+      timerElement.textContent = "🎉 Tech Fest 2025 is Live Now!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }, 1000);
+}
+
